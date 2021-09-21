@@ -72,8 +72,8 @@ namespace BnwGUI
 			*/
 			const glm::vec2 NormalizedDevCoordsToWindowsCoords(float x, float y, glm::vec2 SrcSize)
 			{
-				int xwin = (x + 1) * SrcSize.x * 0.5 + (-1);
-				int ywin = (y + 1) * SrcSize.y * 0.5 + (-1);
+				int xwin = static_cast<int>((x + 1) * SrcSize.x * 0.5 + (-1));
+				int ywin = static_cast<int>((y + 1) * SrcSize.y * 0.5 + (-1));
 				return glm::vec2(xwin, ywin);
 			}
 

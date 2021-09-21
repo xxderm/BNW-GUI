@@ -148,7 +148,7 @@ namespace BnwGUI
 				texture,
 				glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
 				glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
-				face->glyph->advance.x,
+				static_cast<GLuint>(face->glyph->advance.x),
 				face->bbox,
 				face->units_per_EM,
 				face->ascender,
@@ -170,8 +170,9 @@ namespace BnwGUI
 		std::wstring::const_iterator c;
 		Character* ch;
 		int lines = 1;
-		int currentWidth = 0.;
-		int maxWidth = 0.;
+		int currentWidth = 0;
+		int maxWidth = 0;
+		int next;
 
 		for (c = Text.begin(); c != Text.end(); ++c)
 		{		
@@ -188,11 +189,11 @@ namespace BnwGUI
 				continue;
 			}
 
-			auto next = (ch->Advance >> 6) * Scale;
+			next = static_cast<int>((ch->Advance >> 6) * Scale);
 			currentWidth += next;
 
 			if (textSize.y == 0)
-				textSize.y = ch->Size.y * Scale;
+				textSize.y = static_cast<int>(ch->Size.y * Scale);
 
 		}
 
@@ -300,13 +301,15 @@ namespace BnwGUI
 		std::wstring::const_iterator c;
 		int start = x;
 		Character* ch;
+		int next;
+
 		for (c = Text.begin(); c != Text.end(); ++c)
 		{	
 			ch = &mCharacters[*c];
 			if (*c == '\n')
 			{
 				x = start;
-				y -= ((ch->Advance >> 6) + 15) * Scale;
+				y -= static_cast<int>(((ch->Advance >> 6) + 15) * Scale);
 				stride = 0;
 				continue;
 			}
@@ -329,7 +332,7 @@ namespace BnwGUI
 			glBindTexture(GL_ARRAY_BUFFER, 0);
 			glDrawArrays(GL_TRIANGLES, 0, 6);
 
-			float next = (ch->Advance >> 6) * Scale;
+			next = static_cast<int>((ch->Advance >> 6) * Scale);
 			x += next;
 			xLastCoord = x;
 			stride += next;
@@ -344,7 +347,9 @@ namespace BnwGUI
 
 	int Render::RenderText(std::wstring Text, glm::vec4 Color, float Scale, glm::vec2 pos)
 	{
-		return RenderText(Text, Color, Scale, pos.x, pos.y);
+		return RenderText(Text, Color, Scale, 
+			static_cast<int>(pos.x), 
+			static_cast<int>(pos.y));
 	}
 
 }

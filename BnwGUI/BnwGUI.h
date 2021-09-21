@@ -144,7 +144,7 @@ namespace BnwGUI
 		void Resize(glm::vec2 screenSize);
 
 		void RenderRect(glm::vec2 pos, glm::vec2 scale,
-			glm::vec4 color = glm::vec4(0.8), int texture = -1);
+			glm::vec4 color = glm::vec4(0.8f), int texture = -1);
 
 		int RenderText(std::wstring Text, glm::vec4 Color, float Scale, int x, int y);
 

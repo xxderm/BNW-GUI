@@ -18,7 +18,10 @@ namespace BnwGUI
 			if (!Text.empty())
 			{
 				ContentSize.y = Renderer->GetTextSize(Text, (float)TextSize / (float)Renderer->GetMaxFontSize(), 1).y;
-				TextScale = GetNormalizedDeviceCoords(((ScreenSize.x / 2.) + (ContentSize.x / 2.)), ((ScreenSize.y / 2.) - (ContentSize.y / 2. + 2)), ScreenSize);
+				TextScale = GetNormalizedDeviceCoords(
+					static_cast<int>((ScreenSize.x / 2.f) + (ContentSize.x / 2.f)), 
+					static_cast<int>((ScreenSize.y / 2.f) - (ContentSize.y / 2.f + 2)),
+					ScreenSize);
 			}
 
 			// Render input area
@@ -36,7 +39,7 @@ namespace BnwGUI
 				//TextPos.x = resPos.x - TextScale.x + Size.x;
 				auto textCenter = TextScale.x;
 				auto offset = textCenter - Size.x;
-				TextPos.x = ( resPos.x - offset) - 0.01;
+				TextPos.x = ( resPos.x - offset ) - 0.01f;
 			}
 
 			glm::vec2 ResultTextPos = NormalizedDevCoordsToWindowsCoords(
@@ -48,9 +51,10 @@ namespace BnwGUI
 			if (!Text.empty())
 			{
 				BeginScissor(BaseElement::GetResultPos() + glm::vec2(0.0025, 0.), Size - glm::vec2(0.0025, 0.));
-				ContentSize.x = this->Renderer->RenderText(
+				ContentSize.x = (float)this->Renderer->RenderText(
 					Text,
-					TextColor, (float)TextSize / (float)Renderer->GetMaxFontSize(),
+					TextColor, 
+					static_cast<float>(TextSize) / static_cast<float>(Renderer->GetMaxFontSize()),
 					ResultTextPos
 				);
 				EndScissor();

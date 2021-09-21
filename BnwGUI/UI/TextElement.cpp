@@ -10,7 +10,10 @@ namespace BnwGUI
 		void TextElement::Render()
 		{
 			contentSize = Renderer->GetTextSize(Content, (float)TextSize / (float)Renderer->GetMaxFontSize(), true);
-			Size = GetNormalizedDeviceCoords( ((ScreenSize.x / 2.) + (contentSize.x / 2.)), ((ScreenSize.y / 2.) - (contentSize.y / 2. + 2)), ScreenSize);
+			Size = GetNormalizedDeviceCoords( 
+				static_cast<int>((ScreenSize.x / 2.f) + (contentSize.x / 2.f)), 
+				static_cast<int>((ScreenSize.y / 2.f) - (contentSize.y / 2.f + 2)),
+				ScreenSize);
 
 			auto ResultPosition = BaseElement::GetResultPos();
 						

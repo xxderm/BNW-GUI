@@ -68,9 +68,13 @@ namespace BnwGUI
 		void BaseElement::BeginScissor(const glm::vec2& pos, const glm::vec2& size)
 		{
 			auto sciPos = NormalizedDevCoordsToWindowsCoords(pos.x, pos.y, ScreenSize);
-			auto sciSize = NormalizedDevCoordsToWindowsCoords(size.x - (1.0 - size.x), size.y - (1.0 - size.y), ScreenSize);
+			auto sciSize = NormalizedDevCoordsToWindowsCoords(size.x - (1.0f - size.x), size.y - (1.0f - size.y), ScreenSize);
 			glEnable(GL_SCISSOR_TEST);
-			glScissor((sciPos.x - (sciSize.x / 2)), (sciPos.y - (sciSize.y / 2)), sciSize.x, sciSize.y);
+			glScissor( 
+				static_cast<GLint>(sciPos.x - (sciSize.x / 2)), 
+				static_cast<GLint>(sciPos.y - (sciSize.y / 2)), 
+				static_cast<GLsizei>(sciSize.x), 
+				static_cast<GLsizei>(sciSize.y));
 		}
 
 		void BaseElement::EndScissor()

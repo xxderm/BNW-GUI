@@ -15,7 +15,7 @@ namespace BnwGUI
 		struct WindowElementFormat
 		{
 			std::string Name;			
-			glm::vec4 Color = glm::vec4(0.8);
+			glm::vec4 Color = glm::vec4(0.8f);
 			int Texture = -1;
 			ElementParameter Parameter = ElementParameter::UNTITLED_NO_EXIT_BUTTON;
 		}; 
@@ -25,9 +25,9 @@ namespace BnwGUI
 			std::vector<BaseElement *> Childs;
 			WindowElementFormat Format;
 			float HeaderHeight = 0.05f;
-			glm::vec4 HeaderColor = glm::vec4(0.4);
-			glm::vec2 ExitScale = glm::vec2(0.025, 0.025);
-			glm::vec4 ExitColor = glm::vec4(0.9, 0.0, 0.0, 1.0);
+			glm::vec4 HeaderColor = glm::vec4(0.4f);
+			glm::vec2 ExitScale = glm::vec2(0.025f, 0.025f);
+			glm::vec4 ExitColor = glm::vec4(0.9f, 0.0f, 0.0f, 1.0f);
 		public:
 			
 			friend class ButtonElement;
@@ -35,7 +35,7 @@ namespace BnwGUI
 			WindowElement(
 				std::string name,
 				glm::vec2 center, glm::vec2 scale,
-				glm::vec4 color = glm::vec4(0.8),
+				glm::vec4 color = glm::vec4(0.8f),
 				ElementParameter parameter = ElementParameter::UNTITLED_NO_EXIT_BUTTON
 			);
 
