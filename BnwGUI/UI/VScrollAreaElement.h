@@ -11,6 +11,10 @@ namespace BnwGUI
 		class VScrollAreaElement final : public BaseElement
 		{
 			std::vector<BaseElement*> Childs;
+			glm::vec2 MoveAreaPos;
+			glm::vec2 MoveAreaSize;
+			glm::vec2 MoveButtonPos;
+			glm::vec2 MoveButtonSize;
 		public:
 
 			void Render() override;

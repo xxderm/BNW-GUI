@@ -70,7 +70,7 @@ namespace BnwGUI
 			auto toReturn = BaseElement::HandleEvent(e);
 			Position = startPos;
 
-			if (BaseElement::Active)
+			if (Active)
 			{
 				if (e->type == SDL_TEXTINPUT)
 				{

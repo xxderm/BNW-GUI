@@ -47,7 +47,10 @@ int main()
 
 	manager += window1;
 	manager += window2;
-
+	
+	BaseElement* text = new TextElement();
+	GetElement<TextElement>(text)->SetContent(L"Заголовок label");
+	GetElement<TextElement>(text)->SetPosition({ 0.0f, 0.35f });
 	BaseElement* textEdit = new TextEditElement();
 	GetElement<ButtonElement>(textEdit)->SetPosition({ 0.0, 0.2 });
 	GetElement<ButtonElement>(textEdit)->SetContent(L"edit...");	
@@ -59,12 +62,18 @@ int main()
 	VScrollAreaElement* vScroll = new VScrollAreaElement();
 	vScroll->SetSize({ 0.2, 0.3 });
 	ButtonElement* button3 = new ButtonElement();
+	button3->SetPosition({ 0.2f, 0.2f });
+	BaseElement* textEdit2 = new TextEditElement();
+	GetElement<ButtonElement>(textEdit2)->SetPosition({ 0.0, 0.0 });
+	GetElement<ButtonElement>(textEdit2)->SetContent(L"edit...");
 	*window2 += vScroll;
 	*vScroll += button3;
+	*vScroll += textEdit2;
 
 	*window1 += button1;
 	*window1 += button2;
 	*window1 += textEdit;
+	*window1 += text;
 
 
 	window1->OnClickEvent([]() {printf("WIN"); });

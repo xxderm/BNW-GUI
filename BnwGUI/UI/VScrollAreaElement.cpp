@@ -8,9 +8,23 @@ namespace BnwGUI
 
 		void VScrollAreaElement::Render()
 		{
-			Renderer->RenderRect(GetResultPos(), Size, { 1, 0, 0, 1 });
+			/* Main area */
+			Renderer->RenderRect(GetResultPos(), Size, { 0.4f, 0.4f, 0.4f, 1 });
+
+			/* Move area */
+			MoveAreaSize = { 0.01, Size.y };
+			MoveAreaPos = GetResultPos() + glm::vec2(Size.x - MoveAreaSize.x, 0.f);
+			Renderer->RenderRect(MoveAreaPos, MoveAreaSize, { 0.6f, 0.6f, 0.6f, 1 });
+
+			/* Move button */
+			MoveButtonSize = { 0.01, 0.02 };
+			MoveButtonPos = GetResultPos() + glm::vec2(Size.x - MoveButtonSize.x, 0.f);
+			Renderer->RenderRect(MoveButtonPos, MoveButtonSize, { 0.8f, 0.8f, 0.8f, 1 });
+
+			BeginScissor(GetResultPos(), Size);
 			for (auto& child : Childs)
 				child->Render();
+			EndScissor();
 		}
 
 		void VScrollAreaElement::SetScreenSize(glm::vec2 ss)

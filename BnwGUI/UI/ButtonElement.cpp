@@ -19,7 +19,7 @@ namespace BnwGUI
 				ButtonColor
 			);
 
-						
+			
 			this->BeginScissor(ResultPosition, Size);
 			this->Renderer->RenderText(
 				Content,

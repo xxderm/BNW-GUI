@@ -43,7 +43,9 @@ namespace BnwGUI
 				Active = false;
 				if (Parent)
 				{
-					if (Hover(GetNormalizedDeviceCoords(x, y, ScreenSize), Parent->Position + Position))
+					if (Hover(
+						GetNormalizedDeviceCoords(x, y, ScreenSize), Parent->GetResultPos() + Position)
+						)
 					{
 						if (OnClickFunc)
 							OnClickFunc();
