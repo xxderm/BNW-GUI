@@ -32,7 +32,7 @@ int main()
 	SDL_Event event;
 
 	GuiManager manager;
-	manager.Init("C:/Windows/Fonts/Arial.ttf", { 800, 600 }, 48);
+	manager.Init("C:/Windows/Fonts/Arial.ttf", { 800, 600 }, 72);
 
 	WindowElement* window1 = new WindowElement(
 		"Test", glm::vec2(-0.21, -0.2), glm::vec2(0.3, 0.5),
@@ -44,7 +44,7 @@ int main()
 
 	BaseElement* text = new TextElement();
 	text->SetPosition({ 0., 0.4 });
-	GetElement<TextElement>(text)->SetContent(L"Текст Text à");
+	GetElement<TextElement>(text)->SetContent(L"швапива0ы9гпты5r7y6rteyuпшзагтывгЗШАТЫВШАИЫВзывтаspfdginsP(ISUGDFBSPIGD");
 	GetElement<TextElement>(text)->SetTextSize(24);
 	GetElement<TextElement>(text)->SetTextColor({ 0, 0, 0, 1 });
 

@@ -17,7 +17,7 @@ namespace BnwGUI
 		{
 			if (!Text.empty())
 			{
-				ContentSize.y = Renderer->GetTextSize(Text, (float)TextSize / (float)Renderer->GetMaxFontSize(), 1).y;
+				ContentSize = Renderer->GetTextSize(Text, (float)TextSize / (float)Renderer->GetMaxFontSize(), 1);
 				TextScale = GetNormalizedDeviceCoords(
 					static_cast<int>((ScreenSize.x / 2.f) + (ContentSize.x / 2.f)), 
 					static_cast<int>((ScreenSize.y / 2.f) - (ContentSize.y / 2.f + 2)),
@@ -51,7 +51,7 @@ namespace BnwGUI
 			if (!Text.empty())
 			{
 				BeginScissor(BaseElement::GetResultPos() + glm::vec2(0.0025, 0.), Size - glm::vec2(0.0025, 0.));
-				ContentSize.x = (float)this->Renderer->RenderText(
+				(float)this->Renderer->RenderText(
 					Text,
 					TextColor, 
 					static_cast<float>(TextSize) / static_cast<float>(Renderer->GetMaxFontSize()),

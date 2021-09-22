@@ -106,12 +106,16 @@ namespace BnwGUI
 			"uniform vec4 textColor;\n"
 			"const float width = 0.8;\n"
 			"const float edge = 0.19;\n"
+			"const float smoothing = 1.0/32.0;\n"
 			"void main()\n"
 			"{\n"
 			"//float distance = 1.0 - texture(text, TexCoords).a;\n"
 			"//float alpha = 1.0 - smoothstep(width, width + edge, distance);\n"			
 			"//color = vec4(textColor.rgb, alpha);\n"	
 			"color = vec4(textColor.rgb, texture(text, TexCoords).a);\n"
+			"//float distance = texture2D(text, TexCoords).a;\n"
+			"//float alpha = smoothstep(0.5 - smoothing, 0.5 + smoothing, distance);\n"
+			"//color = vec4(textColor.rgb, textColor.a * alpha);\n"
 			"}"
 		};
 		GLuint VertexArray;
