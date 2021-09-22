@@ -30,7 +30,7 @@ namespace BnwGUI
 		{
 			auto ResultPosition = Position;
 			if (Parent)
-				ResultPosition = Parent->Position + Position;
+				ResultPosition = Parent->GetResultPos() + Position;
 			return ResultPosition;
 		}
 

@@ -4,6 +4,7 @@
 #include <BnwGUI/UI/ButtonElement.h>
 #include <BnwGUI/UI/TextElement.h>
 #include <BnwGUI/UI/TextEdit.h>
+#include <BnwGUI/UI/VScrollAreaElement.h>
 #include <iostream>
 #include <memory>
 
@@ -35,36 +36,38 @@ int main()
 	manager.Init("C:/Windows/Fonts/Arial.ttf", { 800, 600 }, 72);
 
 	WindowElement* window1 = new WindowElement(
-		"Test", glm::vec2(-0.21, -0.2), glm::vec2(0.3, 0.5),
+		"Test", glm::vec2(-0.40f, -0.2f), glm::vec2(0.25f, 0.4f),
+		-1, BnwGUI::UI::ElementParameter::UNTITLED_NO_EXIT_BUTTON
+	);
+
+	WindowElement* window2 = new WindowElement(
+		"VScrollTest", glm::vec2(0.2f, 0.2f), glm::vec2(0.25f, 0.4f),
 		-1, BnwGUI::UI::ElementParameter::UNTITLED_NO_EXIT_BUTTON
 	);
 
 	manager += window1;
-
-
-	BaseElement* text = new TextElement();
-	text->SetPosition({ 0., 0.4 });
-	GetElement<TextElement>(text)->SetContent(L"швапива0ы9гпты5r7y6rteyuпшзагтывгЗШАТЫВШАИЫВзывтаspfdginsP(ISUGDFBSPIGD");
-	GetElement<TextElement>(text)->SetTextSize(24);
-	GetElement<TextElement>(text)->SetTextColor({ 0, 0, 0, 1 });
+	manager += window2;
 
 	BaseElement* textEdit = new TextEditElement();
 	GetElement<ButtonElement>(textEdit)->SetPosition({ 0.0, 0.2 });
-	GetElement<ButtonElement>(textEdit)->SetContent(L"edit...");
-
+	GetElement<ButtonElement>(textEdit)->SetContent(L"edit...");	
 
 	BaseElement* button1 = new ButtonElement();
 	BaseElement* button2 = new ButtonElement();	
-
 	GetElement<ButtonElement>(button2)->SetPosition({ 0.0, -0.2 });
+
+	VScrollAreaElement* vScroll = new VScrollAreaElement();
+	vScroll->SetSize({ 0.2, 0.3 });
+	ButtonElement* button3 = new ButtonElement();
+	*window2 += vScroll;
+	*vScroll += button3;
 
 	*window1 += button1;
 	*window1 += button2;
 	*window1 += textEdit;
-	*window1 += text;
+
 
 	window1->OnClickEvent([]() {printf("WIN"); });
-
 
 	button1->OnClickEvent( std::move(
 		[&]() mutable -> void

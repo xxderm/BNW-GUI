@@ -17,6 +17,8 @@ namespace BnwGUI
 
 			EventType HandleEvent(SDL_Event* e) override;
 
+			void SetScreenSize(glm::vec2 ss) override;
+
 			void operator+=(BaseElement* child);
 
 		};

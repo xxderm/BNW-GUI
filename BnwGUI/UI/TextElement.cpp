@@ -19,6 +19,8 @@ namespace BnwGUI
 						
 			//Renderer->RenderRect(ResultPosition, Size, { 1, 0, 0, 1 });
 
+			if(Parent)
+				BeginScissor(BaseElement::GetResultPos(), Parent->GetSize());
 			this->Renderer->RenderText(
 				Content,
 				TextColor, (float)TextSize / (float)Renderer->GetMaxFontSize(),
@@ -27,6 +29,8 @@ namespace BnwGUI
 					ScreenSize
 				) - glm::vec2(contentSize.x / 2, contentSize.y / 2)
 			);
+			if(Parent)
+				EndScissor();
 		}
 
 		EventType TextElement::HandleEvent(SDL_Event* e)

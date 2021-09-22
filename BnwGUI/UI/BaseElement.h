@@ -45,8 +45,6 @@ namespace BnwGUI
 			TITLE_WITH_EXIT_BUTTON
 		};
 
-		class WindowElement;		
-
 		class BaseElement 
 		{			
 		protected:
@@ -59,6 +57,8 @@ namespace BnwGUI
 		protected:
 			std::function<void(void)> OnClickFunc;
 		public:
+
+			inline const glm::vec2 GetSize() const { return Size; }
 
 			const glm::vec2 GetNormalizedDeviceCoords(int mouseX, int mouseY, glm::vec2 ScrSize)
 			{
