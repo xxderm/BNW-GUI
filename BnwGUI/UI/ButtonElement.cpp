@@ -10,7 +10,6 @@ namespace BnwGUI
 		void ButtonElement::Render()
 		{
 			auto ResultPosition = BaseElement::GetResultPos();
-
 			auto contentSize = Renderer->GetTextSize(Content,  (float)TextSize / (float)Renderer->GetMaxFontSize(), true);
 
 			this->Renderer->RenderRect(
@@ -19,7 +18,6 @@ namespace BnwGUI
 				ButtonColor
 			);
 
-			
 			this->BeginScissor(ResultPosition, Size);
 			this->Renderer->RenderText(
 				Content,
@@ -29,8 +27,7 @@ namespace BnwGUI
 					ScreenSize
 				) - glm::vec2(contentSize.x / 2, contentSize.y / 2)
 			);
-			this->EndScissor();
-
+			this->EndScissor();		
 		}
 
 		EventType ButtonElement::HandleEvent(SDL_Event* e)

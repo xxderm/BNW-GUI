@@ -23,7 +23,9 @@ namespace BnwGUI
 
 			BeginScissor(GetResultPos(), Size);
 			for (auto& child : Childs)
+			{
 				child->Render();
+			}
 			EndScissor();
 		}
 

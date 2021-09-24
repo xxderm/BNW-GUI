@@ -64,7 +64,7 @@ int main()
 	ButtonElement* button3 = new ButtonElement();
 	button3->SetPosition({ 0.2f, 0.2f });
 	BaseElement* textEdit2 = new TextEditElement();
-	GetElement<ButtonElement>(textEdit2)->SetPosition({ 0.0, 0.0 });
+	GetElement<ButtonElement>(textEdit2)->SetPosition({ 0.2, 0.0 });
 	GetElement<ButtonElement>(textEdit2)->SetContent(L"edit...");
 	*window2 += vScroll;
 	*vScroll += button3;
