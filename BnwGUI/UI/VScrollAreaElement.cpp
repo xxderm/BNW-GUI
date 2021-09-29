@@ -21,12 +21,12 @@ namespace BnwGUI
 			MoveButtonPos = GetResultPos() + glm::vec2(Size.x - MoveButtonSize.x, 0.f);
 			Renderer->RenderRect(MoveButtonPos, MoveButtonSize, { 0.8f, 0.8f, 0.8f, 1 });
 
-			BeginScissor(GetResultPos(), Size);
+			BeginStencil(GetResultPos(), Size);
 			for (auto& child : Childs)
-			{
+			{		
 				child->Render();
-			}
-			EndScissor();
+			}			
+			EndStencil(GetResultPos(), Size);		
 		}
 
 		void VScrollAreaElement::SetScreenSize(glm::vec2 ss)

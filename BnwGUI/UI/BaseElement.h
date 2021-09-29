@@ -54,6 +54,7 @@ namespace BnwGUI
 			glm::vec2 Size = { 0.1, 0.05 };
 			glm::vec2 Position = { 0, 0 };
 			glm::vec2 ScreenSize;
+			unsigned short StencilMaskDepth = 0;
 		protected:
 			std::function<void(void)> OnClickFunc;
 		public:
@@ -90,6 +91,10 @@ namespace BnwGUI
 			void BeginScissor(const glm::vec2& pos, const glm::vec2& size);
 
 			void EndScissor();
+
+			void BeginStencil(const glm::vec2& pos, const glm::vec2& size);
+
+			void EndStencil(const glm::vec2& pos, const glm::vec2& size);
 
 			void SetRenderer(BnwGUI::Render *Renderer);
 

@@ -25,14 +25,16 @@ namespace BnwGUI
 			}
 
 			// Render input area
+			BeginScissor(Parent->GetResultPos(), Parent->GetSize());
 			this->Renderer->RenderRect(
 				BaseElement::GetResultPos(),
 				Size,
 				InputAreaColor
 			);
+			EndScissor();
 
 			auto resPos = BaseElement::GetResultPos();
-			TextPos = glm::vec2( (resPos.x - Size.x + TextScale.x + 0.0085), resPos.y);
+			TextPos = glm::vec2( (resPos.x - Size.x + TextScale.x + 0.0085f), resPos.y);
 
 			if (TextScale.x >= Size.x)
 			{
@@ -49,15 +51,17 @@ namespace BnwGUI
 
 			// Render text
 			if (!Text.empty())
-			{
-				BeginScissor(BaseElement::GetResultPos() + glm::vec2(0.0025, 0.), Size - glm::vec2(0.0025, 0.));
+			{				
+				BeginScissor(
+					BaseElement::GetResultPos() + glm::vec2(0.0025, 0.), 
+					Size - glm::vec2(0.0025, 0.));				
 				(float)this->Renderer->RenderText(
 					Text,
 					TextColor, 
 					static_cast<float>(TextSize) / static_cast<float>(Renderer->GetMaxFontSize()),
 					ResultTextPos
 				);
-				EndScissor();
+				EndScissor();	
 			}
 
 			CurrentCharIndex = Text.size() - 1;

@@ -1,5 +1,6 @@
 #include <BnwGUI/UI/BaseElement.h>
 #include <BnwGUI/UI/WindowElement.h>
+#include <BnwGUI/BnwGUI.h>
 #ifdef _WIN32
 #include <Windows.h>
 #endif // !_WIN32
@@ -82,6 +83,39 @@ namespace BnwGUI
 		void BaseElement::EndScissor()
 		{
 			glDisable(GL_SCISSOR_TEST);
+		}
+
+		void BaseElement::BeginStencil(const glm::vec2& pos, const glm::vec2& size)
+		{
+			if (StencilMaskDepth++ == 0)
+				glEnable(GL_STENCIL_TEST);
+			glColorMask(false, false, false, false);
+			glDepthMask(false);
+			glStencilFunc(GL_ALWAYS, StencilMaskDepth, StencilMaskDepth);
+			glStencilOp(GL_INCR, GL_INCR, GL_INCR);
+			// Draw
+			Renderer->RenderRect(pos, size, { 0, 1, 0, 1 });
+
+			glColorMask(true, true, true, true);
+			glDepthMask(true);
+			glStencilFunc(GL_EQUAL, StencilMaskDepth, StencilMaskDepth);
+			glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
+		}
+
+		void BaseElement::EndStencil(const glm::vec2& pos, const glm::vec2& size)
+		{
+			glColorMask(false, false, false, false);
+			glDepthMask(false);
+			glStencilFunc(GL_ALWAYS, StencilMaskDepth, StencilMaskDepth);
+			glStencilOp(GL_DECR, GL_DECR, GL_DECR);
+			// Draw rectangle
+			Renderer->RenderRect(pos, size, { 0, 1, 0, 1 });
+
+			glColorMask(true, true, true, true);
+			glDepthMask(true);
+
+			if (--StencilMaskDepth == 0)
+				glDisable(GL_STENCIL_TEST);
 		}
 
 		void BaseElement::SetRenderer(BnwGUI::Render* Renderer)
