@@ -67,6 +67,14 @@ namespace BnwGUI
 			CurrentCharIndex = Text.size() - 1;
 		}
 
+		std::wstring s2ws(const std::string& str)
+		{
+			int size_needed = MultiByteToWideChar(CP_UTF8, 0, &str[0], (int)str.size(), NULL, 0);
+			std::wstring wstrTo(size_needed, 0);
+			MultiByteToWideChar(CP_UTF8, 0, &str[0], (int)str.size(), &wstrTo[0], size_needed);
+			return wstrTo;
+		}
+
 		EventType TextEditElement::HandleEvent(SDL_Event* e)
 		{
 			auto startPos = Position;
@@ -78,9 +86,10 @@ namespace BnwGUI
 			{
 				if (e->type == SDL_TEXTINPUT)
 				{
-					std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-					std::wstring wide = converter.from_bytes(e->text.text);
-					Text += wide;
+					//std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+					//std::wstring wide = converter.from_bytes(e->text.text);
+					//Text += wide;
+					Text += s2ws(e->text.text);
 				}
 
 				if (e->type == SDL_KEYDOWN)

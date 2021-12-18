@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+BnwGUI/ext
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

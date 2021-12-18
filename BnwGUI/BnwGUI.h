@@ -3,7 +3,7 @@
 
 #include <BnwGUI/UI/WindowElement.h>
 #include <GL/glew.h>
-#include  <gl/GL.h>
+#include <gl/GL.h>
 #include <glm/gtx/matrix_transform_2d.hpp>
 #include <glm/gtc/matrix_transform.inl>
 #include <glm/matrix.hpp>
@@ -18,6 +18,7 @@
 #include <codecvt>
 #include <cstdlib>
 #include <sstream>
+#include "ext/msdf/msdfgen.h"
 
 namespace BnwGUI
 {

@@ -10,7 +10,7 @@ namespace BnwGUI
 		{
 			/* Main area */
 			Renderer->RenderRect(GetResultPos(), Size, { 0.4f, 0.4f, 0.4f, 1 });
-
+			
 			/* Move area */
 			MoveAreaSize = { 0.01, Size.y };
 			MoveAreaPos = GetResultPos() + glm::vec2(Size.x - MoveAreaSize.x, 0.f);
@@ -21,12 +21,12 @@ namespace BnwGUI
 			MoveButtonPos = GetResultPos() + glm::vec2(Size.x - MoveButtonSize.x, 0.f);
 			Renderer->RenderRect(MoveButtonPos, MoveButtonSize, { 0.8f, 0.8f, 0.8f, 1 });
 
-			BeginStencil(GetResultPos(), Size);
+			BeginStencil(GetResultPos(), Size - glm::vec2(0.02, 0));
 			for (auto& child : Childs)
 			{		
 				child->Render();
 			}			
-			EndStencil(GetResultPos(), Size);		
+			EndStencil(GetResultPos(), Size - glm::vec2(0.02, 0));
 		}
 
 		void VScrollAreaElement::SetScreenSize(glm::vec2 ss)
